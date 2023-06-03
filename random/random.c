@@ -13,6 +13,7 @@ void printTerminalTime(time_t t) {
 int main() {
     setbuf(stdout, NULL);
     time_t timer = time(NULL);
+    printf("%ld", (long)timer);
     srand((uint32_t)timer);
     printTerminalTime(timer);
     printf("%s", "Please enter your password: ");

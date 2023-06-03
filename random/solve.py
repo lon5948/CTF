@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import pwn, sys, datetime, time
+import pwn, sys, datetime, subprocess
 
 if __name__ == '__main__':
     target = None
@@ -18,8 +18,8 @@ if __name__ == '__main__':
     today = datetime.date.today()
     year, month, day = today.year, today.month, today.day
     date = datetime.datetime(year, month, day, hour, minute, second)
-    
     timestamp = int(date.timestamp)
 
+    attack = subprocess.run(['./sol.c', str(timestamp)], stdout=subprocess.PIPE).stdout.strip()
     target.sendline(attack)
     print(target.recvall().decode("utf-8", "ignore").strip())
